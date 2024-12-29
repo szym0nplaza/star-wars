@@ -12,7 +12,7 @@ import random
 class CollectionsHandler(ICollectionsHandler):
     def _make_request(self, content: str) -> list:
         result = requests.get(
-            f"https://swapi.dev/api/{content}/?page=1"
+            f"https://swapi.py4e.com/api/{content}/?page=1"
         ).json()  # get first page from API
 
         collected_data = [*result.get("results")]

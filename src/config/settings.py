@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+sys.path.append(str(BASE_DIR / 'src'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -52,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,17 @@ if not os.path.exists(DATASET_DIR[0]):
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',  # Using PostgreSQL database backend
+        'NAME': 'postgres',             # Replace with your database name
+        'USER': 'postgres',                       # Username for PostgreSQL
+        'PASSWORD': 'pstgrs_pwd',                 # Password for the user
+        'HOST': 'localhost',                      # Database host
+        'PORT': '5432',                           # Database port
+    }
+}
 
 try:
     from config.local_settings import *  # noqa: F403,F401
